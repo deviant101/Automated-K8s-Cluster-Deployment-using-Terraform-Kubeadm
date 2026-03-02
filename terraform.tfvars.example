@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Resource Group & Location
+# ─────────────────────────────────────────────────────────────────────────────
+resource_group_name = "k8s-cluster-rg"
+location            = "East US"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Networking
+# ─────────────────────────────────────────────────────────────────────────────
+vnet_name            = "k8s-vnet"
+vnet_address_space   = ["10.0.0.0/16"]
+
+master_subnet_name   = "master-subnet"
+master_subnet_prefix = "10.0.1.0/24"
+
+worker_subnet_name   = "worker-subnet"
+worker_subnet_prefix = "10.0.2.0/24"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Virtual Machines
+# ─────────────────────────────────────────────────────────────────────────────
+admin_username      = "azureuser"
+ssh_public_key_path = "~/.ssh/id_rsa.pub"
+
+# Standard_B2s  →  2 vCPU, 4 GB RAM  (2 vCPU minimum; Azure offers B2s as a cost-efficient option)
+master_vm_size  = "Standard_B2s"
+worker_vm_size  = "Standard_B2s"
+os_disk_size_gb = 50
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Tags
+# ─────────────────────────────────────────────────────────────────────────────
+tags = {
+  Environment = "dev"
+  Project     = "k8s-cluster"
+  ManagedBy   = "terraform"
+}
