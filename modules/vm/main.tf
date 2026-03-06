@@ -33,6 +33,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
   network_interface_ids           = [azurerm_network_interface.nic.id]
   tags                            = var.tags
 
+  # cloud-init script executed on first boot (base64-encoded shell script)
+  custom_data = var.custom_data
+
   admin_ssh_key {
     username   = var.admin_username
     public_key = var.ssh_public_key

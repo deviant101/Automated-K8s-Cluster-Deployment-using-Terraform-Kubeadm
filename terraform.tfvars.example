@@ -19,13 +19,31 @@ worker_subnet_prefix = "10.0.2.0/24"
 # ─────────────────────────────────────────────────────────────────────────────
 # Virtual Machines
 # ─────────────────────────────────────────────────────────────────────────────
-admin_username      = "azureuser"
-ssh_public_key_path = "~/.ssh/id_rsa_azure.pub"
+admin_username       = "azureuser"
+ssh_public_key_path  = "~/.ssh/id_rsa_azure.pub"
+ssh_private_key_path = "~/.ssh/id_rsa_azure"
 
-# Standard_B2s  →  2 vCPU, 4 GB RAM  (2 vCPU minimum; Azure offers B2s as a cost-efficient option)
+worker_count    = 2
+
+# Standard_B2s  →  2 vCPU, 4 GB RAM  (minimum; cost-efficient for dev/test)
+# For production consider Standard_D4s_v5 (4 vCPU, 16 GB) for the master node
 master_vm_size  = "Standard_B2s"
 worker_vm_size  = "Standard_B2s"
 os_disk_size_gb = 50
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Kubernetes
+# ─────────────────────────────────────────────────────────────────────────────
+kubernetes_version     = "1.32"
+kubernetes_pkg_version = ""        # leave empty for latest patch in the 1.32 stream
+
+# Pod CIDR must NOT overlap with:
+#   - vnet_address_space  (10.0.0.0/16)
+#   - service_cidr        (10.96.0.0/12)
+pod_cidr     = "10.10.0.0/16"
+service_cidr = "10.96.0.0/12"
+
+cilium_version = "1.17.2"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Tags

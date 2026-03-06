@@ -48,12 +48,23 @@ variable "admin_username" {
 }
 
 variable "ssh_public_key_path" {
-  description = "Local filesystem path to the SSH public key file"
+  description = "Local filesystem path to the SSH public key file (.pub)"
   type        = string
 }
 
+variable "ssh_private_key_path" {
+  description = "Local filesystem path to the SSH private key (used by Terraform provisioners)"
+  type        = string
+}
+
+variable "worker_count" {
+  description = "Number of worker nodes to create"
+  type        = number
+  default     = 2
+}
+
 variable "master_vm_size" {
-  description = "Azure VM SKU for the master node (min 2 vCPU / 2 GB RAM recommended by kubeadm)"
+  description = "Azure VM SKU for the master node (min 2 vCPU / 2 GB RAM required by kubeadm)"
   type        = string
 }
 
@@ -66,6 +77,38 @@ variable "os_disk_size_gb" {
   description = "OS disk size in GB for all VMs"
   type        = number
   default     = 50
+}
+
+# ─── Kubernetes ───────────────────────────────────────────────────────────────
+
+variable "kubernetes_version" {
+  description = "Kubernetes minor version to install, e.g. \"1.32\" (controls kubeadm/kubelet/kubectl apt repo)"
+  type        = string
+  default     = "1.32"
+}
+
+variable "kubernetes_pkg_version" {
+  description = "Exact apt package version string for kubeadm/kubelet/kubectl, e.g. \"1.32.3-1.1\". Leave empty to install the latest in the minor stream."
+  type        = string
+  default     = ""
+}
+
+variable "pod_cidr" {
+  description = "CIDR range for Kubernetes pod networking (must not overlap with vnet_address_space or service_cidr)"
+  type        = string
+  default     = "10.10.0.0/16"
+}
+
+variable "service_cidr" {
+  description = "CIDR range for Kubernetes Service ClusterIPs"
+  type        = string
+  default     = "10.96.0.0/12"
+}
+
+variable "cilium_version" {
+  description = "Cilium CNI version to install via cilium CLI, e.g. \"1.17.2\""
+  type        = string
+  default     = "1.17.2"
 }
 
 # ─── Tags ─────────────────────────────────────────────────────────────────────

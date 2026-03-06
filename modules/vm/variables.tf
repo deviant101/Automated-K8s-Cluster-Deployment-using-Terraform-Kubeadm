@@ -45,6 +45,12 @@ variable "private_ip_allocation" {
   default     = "Dynamic"
 }
 
+variable "custom_data" {
+  description = "Base64-encoded cloud-init / custom_data script to run on first boot"
+  type        = string
+  default     = null
+}
+
 variable "tags" {
   description = "Tags to apply to all resources"
   type        = map(string)
