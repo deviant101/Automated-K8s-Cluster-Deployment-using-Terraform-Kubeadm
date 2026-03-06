@@ -1,6 +1,7 @@
 ## Automated Kubernetes Cluster Deployment on Azure using Terraform, kubeadm, and Cilium
 
 ![Terraform](https://img.shields.io/badge/Terraform-%3E%3D1.5-7B42BC?logo=terraform)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-444444?logo=kubernetes&style=flat-square)
 ![Cilium](https://img.shields.io/badge/CNI-Cilium-F8C517?logo=cilium)
 ![Azure](https://img.shields.io/badge/Cloud-Azure-0078D4?logo=microsoftazure)
 
