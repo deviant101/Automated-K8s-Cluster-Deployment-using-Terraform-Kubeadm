@@ -20,7 +20,7 @@ worker_subnet_prefix = "10.0.2.0/24"
 # Virtual Machines
 # ─────────────────────────────────────────────────────────────────────────────
 admin_username      = "azureuser"
-ssh_public_key_path = "~/.ssh/id_rsa.pub"
+ssh_public_key_path = "~/.ssh/id_rsa_azure.pub"
 
 # Standard_B2s  →  2 vCPU, 4 GB RAM  (2 vCPU minimum; Azure offers B2s as a cost-efficient option)
 master_vm_size  = "Standard_B2s"

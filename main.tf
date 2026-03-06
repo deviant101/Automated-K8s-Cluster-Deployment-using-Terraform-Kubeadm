@@ -282,7 +282,7 @@ module "master_vm" {
 # Two worker nodes share the worker subnet (count = 2)
 module "worker_vm" {
   source = "./modules/vm"
-  count  = 2
+  count  = 1
 
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
